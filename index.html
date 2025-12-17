@@ -72,48 +72,74 @@
       border:1px solid var(--line); border-radius:var(--r);
       box-shadow:var(--shadow); padding:20px;
     }
-    
-    /* MODIF: Centrage des titres des cartes */
     .cardHead{
         margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line);
-        text-align: center; /* Centrage du conteneur */
+        text-align: center;
     }
     .cardHead h2{
-        margin:0; font-size:18px; 
-        display:flex; align-items:center; gap:10px; 
-        justify-content: center; /* Centrage du texte flex */
+        margin:0; font-size:18px; display:flex; align-items:center; gap:10px;
+        justify-content: center;
     }
     
-    /* --- SOMMAIRE --- */
-    details{
-      background:color-mix(in oklab, var(--card), transparent 30%);
-      border:1px solid var(--line); border-radius:12px;
-      margin-bottom:10px; overflow:hidden; transition:background .2s;
-    }
-    details:hover{background:color-mix(in oklab, var(--card), transparent 50%)}
+    /* --- SOMMAIRE (Nouveau Style sans flèches) --- */
     
-    summary{
-      padding:14px; font-weight:600; cursor:pointer; list-style:none;
-      display:flex; justify-content:space-between; align-items:center;
+    /* Style commun pour les liens directs et les titres de dossiers */
+    .tocLink, summary {
+      display: block;
+      padding: 16px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      background: color-mix(in oklab, var(--card), transparent 30%);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+      list-style: none;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
+    
+    /* Suppression du marqueur par défaut des summary */
     summary::-webkit-details-marker{display:none}
-    summary:after{content:"›"; font-size:18px; transition:transform .2s; color:var(--muted)}
-    details[open] summary:after{transform:rotate(90deg)}
-    
-    .tocLink{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:14px; text-decoration:none; font-weight:600;
-      background:color-mix(in oklab, var(--card), transparent 30%);
-      border:1px solid var(--line); border-radius:12px;
-      margin-bottom:10px; transition:background .2s;
-    }
-    .tocLink:hover{background:color-mix(in oklab, var(--card), transparent 50%)}
-    .tocLink span{display:flex; gap:10px; align-items:center}
-    .chev{color:var(--muted); font-size:18px}
 
-    .subList{
-      padding:0 14px 14px; display:grid; gap:6px;
+    /* EFFET DE SURVOL (Mise en lumière + Relief) */
+    .tocLink:hover, summary:hover {
+        background: color-mix(in oklab, var(--card), transparent 5%); /* Plus lumineux */
+        transform: translateY(-2px); /* Relief vers le haut */
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Ombre accentuée */
+        border-color: var(--accent); /* Bordure colorée */
     }
+    
+    /* Petit indicateur visuel à gauche au survol */
+    .tocLink:hover::before, summary:hover::before {
+        content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+        background: var(--accent);
+    }
+
+    /* Conteneur des détails (Dossiers) */
+    details{
+      margin-bottom: 10px;
+    }
+    /* Quand le dossier est ouvert */
+    details[open] summary {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+        background: color-mix(in oklab, var(--card), transparent 10%);
+        border-bottom: 1px solid transparent;
+    }
+    
+    .subList{
+      padding: 10px 14px 14px; 
+      display:grid; gap:6px;
+      border: 1px solid var(--line);
+      border-top: none;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      background: color-mix(in oklab, var(--card), transparent 40%);
+    }
+    
     .mini{
       display:block; padding:8px 12px; border-radius:8px;
       background:color-mix(in oklab, var(--card), transparent 60%);
@@ -128,17 +154,12 @@
       padding:16px; border-radius:16px; border:1px solid var(--line);
       display:flex; flex-direction:column; gap:4px;
       transition:transform .2s;
-      justify-content: center; /* Centrer verticalement */
-      align-items: center; /* Centrer horizontalement */
-      text-align: center; /* Texte centré */
+      justify-content: center; align-items: center; text-align: center;
     }
     .tile:hover{transform:translateY(-2px)}
     .tile div{font-weight:700; font-size:15px}
-    
-    /* MODIF: Sous-titre à la ligne et non collé */
     .tile small{
-        display: block; /* Force le retour à la ligne */
-        margin-top: 4px; /* Espace le sous-titre */
+        display: block; margin-top: 4px;
         font-weight:400; color:var(--muted); font-size:12px;
     }
     
@@ -154,7 +175,7 @@
     }
     .dl-link:hover{color:var(--accent); text-decoration:underline;}
 
-    /* Crédits et Logo CENTRÉS */
+    /* CREDITS CENTRÉS */
     .credits{
         margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);
         text-align: center;
@@ -162,10 +183,8 @@
         line-height: 1.4; opacity: 0.8;
     }
     .footer-logo {
-        width: 60px; /* Petit logo discret */
-        height: auto;
-        margin-top: 15px; /* Espace au dessus du logo */
-        opacity: 0.9;
+        width: 60px; height: auto;
+        margin-top: 15px; opacity: 0.9;
     }
 
     @media (max-width:600px){.tiles{grid-template-columns:1fr}}
@@ -189,15 +208,13 @@
           <h2>Sommaire</h2>
         </div>
 
-        <div class="toc">
+        <div>
           <a class="tocLink" href="02-infographie-2025-2026.html">
-            <span>Infographie 2025-2026</span><span class="chev">›</span>
+            Infographie 2025-2026
           </a>
 
           <details>
-            <summary>
-              <span>Présentation & Contexte</span><span class="chev">›</span>
-            </summary>
+            <summary>Présentation & Contexte</summary>
             <div class="subList">
               <a class="mini" href="03-contexte.html">Éléments de contexte</a>
               <a class="mini" href="04-ecole.html">École élémentaire</a>
@@ -207,9 +224,7 @@
           </details>
 
           <details>
-            <summary>
-              <span>Méthode & Cadrage</span><span class="chev">›</span>
-            </summary>
+            <summary>Méthode & Cadrage</summary>
             <div class="subList">
               <a class="mini" href="07-methode.html">Méthode retenue</a>
               <a class="mini" href="08-introduction.html" style="color:var(--text); font-weight:700">Introduction générale</a>
@@ -217,9 +232,7 @@
           </details>
 
           <details>
-            <summary>
-              <span>Le Projet (2026-2030)</span><span class="chev">›</span>
-            </summary>
+            <summary>Le Projet (2026-2030)</summary>
             <div class="subList">
               <a class="mini" href="09-axe1.html">Axe 1 : Parcours</a>
               <a class="mini" href="10-axe2.html">Axe 2 : Accessibilité</a>
@@ -229,9 +242,7 @@
           </details>
 
           <details>
-            <summary>
-              <span>Évaluation & Mise en œuvre</span><span class="chev">›</span>
-            </summary>
+            <summary>Évaluation & Mise en œuvre</summary>
             <div class="subList">
               <a class="mini" href="13-mise-en-oeuvre-axe1.html">Axe 1 : Parcours</a>
               <a class="mini" href="14-mise-en-oeuvre-axe2.html">Axe 2 : Accessibilité</a>
@@ -241,7 +252,7 @@
           </details>
 
           <a class="tocLink" href="17-conclusion.html">
-            <span>Conclusion</span><span class="chev">›</span>
+            Conclusion
           </a>
         </div>
       </div>
