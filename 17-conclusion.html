@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang=fr>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <title>Conclusion</title>
+  <meta name=color-scheme content="light dark">
+  <style>
+    :root{
+      --bg:#0b1220; --card:#101a2f; --muted:#9fb0d0; --text:#eaf0ff; --line:rgba(255,255,255,.10);
+      --shadow:0 18px 55px rgba(0,0,0,.35); --r:20px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f5f7ff; --card:#fff; --muted:#53627a; --text:#0b1220; --line:rgba(0,0,0,.10); --shadow:0 18px 55px rgba(30,41,59,.14);}
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(110,231,255,.16), transparent 60%),
+        radial-gradient(900px 700px at 100% 10%, rgba(167,139,250,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:980px; margin:0 auto; padding:18px 16px 56px}
+    
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:14px; border:1px solid var(--line); border-radius:var(--r);
+      background:color-mix(in oklab, var(--card), transparent 10%);
+      box-shadow:var(--shadow);
+      position:sticky; top:12px; z-index:10; backdrop-filter:blur(10px);
+    }
+    
+    /* Style Logo */
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{
+      width:44px; height:44px; border-radius:14px; overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(110,231,255,.22), rgba(167,139,250,.18));
+      display:grid; place-items:center;
+    }
+    .logo img{width:100%; height:100%; object-fit:cover}
+
+    .brand h1{font-size:16px; margin:0}
+    .brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
+    
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      padding:10px 12px; border-radius:999px; border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 12%);
+      font-size:13px;
+    }
+    .pill:hover{transform:translateY(-1px)}
+    @media (max-width:920px){.topbar{flex-direction:column; align-items:stretch}.nav{justify-content:flex-start}}
+
+    .page{
+      margin-top:16px;
+      border:1px solid var(--line);
+      border-radius:calc(var(--r) + 6px);
+      background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 4%), color-mix(in oklab, var(--card), transparent 12%));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .head{
+      padding:22px 18px 10px;
+      position:relative;
+    }
+    .head:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(760px 260px at 10% 0%, rgba(251,191,36,.18), transparent 60%),
+        radial-gradient(700px 280px at 90% 0%, rgba(110,231,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .head>*{position:relative}
+    .title{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.2px;
+    }
+    .body{
+      padding:0 18px 22px;
+      color:color-mix(in oklab, var(--text), transparent 0%);
+      font-size:15.5px;
+    }
+    .body p{margin:14px 0}
+    .quote{
+      margin:18px 0 6px;
+      padding:14px 14px;
+      border-left:4px solid color-mix(in oklab, var(--text), transparent 55%);
+      border-radius:14px;
+      background:color-mix(in oklab, var(--card), transparent 10%);
+      color:color-mix(in oklab, var(--text), transparent 8%);
+      font-style:italic;
+    }
+    .sig{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      display:flex;
+      justify-content:flex-end;
+      text-align:right;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .sig b{color:var(--text)}
+    
+    .foot{
+      margin-top:18px;
+      padding:12px 16px;
+      border-top:1px solid rgba(0,0,0,.08);
+      color:#6b7280;
+      font-size:12px;
+      text-align:center;
+    }
+    @media print{
+      body{background:#fff}
+      .topbar{position:static; box-shadow:none}
+      .page{box-shadow:none}
+      .pill{display:none}
+      .wrap{max-width:900px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class=wrap>
+    <header class=topbar>
+      <a href="index.html" class=brand>
+        <div class="logo">
+           <img src="logo-csrp.png" alt="">
+        </div>
+        <div>
+          <h1>Projet d’établissement</h1>
+          <p>Conclusion</p>
+        </div>
+      </a>
+
+      <nav class=nav aria-label=Navigation>
+        <a class=pill href=index.html>Accueil</a>
+        <a class=pill href=01-sommaire.html>Sommaire</a>
+      </nav>
+    </header>
+
+    <main class=page>
+      <section class=head>
+        <h2 class=title>Conclusion</h2>
+      </section>
+
+      <section class=body>
+        <p>Ce projet d’établissement traduit la volonté collective de notre communauté scolaire de construire une école inclusive, bienveillante et exigeante, où chaque élève trouve les conditions de sa réussite et de son épanouissement.</p>
+
+        <p>Fruit d’une réflexion partagée entre les équipes pédagogiques, éducatives et de direction, il affirme des orientations claires autour de quatre axes structurants : la personnalisation des parcours, l’accessibilité des apprentissages, le bien-être de tous, et l’affirmation d’une identité d’établissement ressource.</p>
+
+        <p>En affirmant son identité singulière, la cité scolaire René Pellet – EREA DV entend renforcer son rôle d’acteur de référence sur les questions d’éducation inclusive et d’accompagnement des élèves à besoins particuliers. L’établissement poursuivra sa dynamique d’innovation, d’expérimentation et de partenariat pour anticiper les évolutions de l’École et répondre au mieux aux besoins des jeunes accueillis.</p>
+
+        <p>Ces priorités constituent la trame d’une action cohérente, concertée et évolutive, au service des élèves et de la réussite de chacun.</p>
+
+        <p>Ce projet s’inscrit dans une démarche de pilotage participatif et d’amélioration continue. Les équipes s’engagent à en assurer le suivi et l’évaluation régulière, à ajuster leurs pratiques, et à valoriser les réussites observées. Des instances de concertation permettront d’analyser les avancées et de réorienter les actions en fonction des besoins constatés sur le terrain.</p>
+
+        <p>La réussite de ce projet repose sur la mobilisation de tous : personnels, élèves, familles, partenaires institutionnels. Chacun, à son niveau, contribue à la construction d’un établissement ouvert, scolaire et apprenant.</p>
+
+        <p>Ce projet d’établissement nous engage dans une démarche d’éducation globale, fondée sur la confiance, la coopération, la fraternité et le progrès de tous.</p>
+
+        <div class=quote>Que la cité scolaire René Pellet, soit pour chacun de ses élèves, un lieu qui lui ouvre des horizons…</div>
+
+        <div class=sig>
+          <div><b>Le Comité de pilotage</b> du projet d’établissement 2026-2030</div>
+          <div>Villeurbanne, le 15 décembre 2025</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class=foot>
+      <div>Projet d’établissement 2026-2030 — Cité scolaire René Pellet</div>
+    </footer>
+  </div>
+
+  <script>
+    ;(function(){
+      try{ localStorage.setItem('pe_last_file', (location.pathname.split('/').pop() || '17-conclusion.html')) }catch(e){}
+    })()
+  </script>
+</body>
+</html>

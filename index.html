@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Projet d’établissement 2026–2030</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --bg:#0b1220; --card:#101a2f; --text:#eaf0ff; --muted:#9fb0d0; --line:rgba(255,255,255,.10);
+      --shadow:0 18px 55px rgba(0,0,0,.35); --r:20px;
+      --accent:#6ee7ff;
+      --tintA: rgba(110,231,255,.08); --tintB: rgba(167,139,250,.08);
+      --tintC: rgba(251,191,36,.10); --tintD: rgba(34,197,94,.08);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f5f7ff; --card:#fff; --text:#0b1220; --muted:#53627a; --line:rgba(0,0,0,.10);
+        --shadow:0 18px 55px rgba(30,41,59,.14);
+        --accent:#0284c7;
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+      background:radial-gradient(1200px 800px at 50% 0%, rgba(110,231,255,.12), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1000px; margin:0 auto; padding:20px 16px 60px}
+    
+    /* --- HERO SECTION --- */
+    .hero{
+      text-align:center; padding:50px 20px 40px;
+      background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 10%), color-mix(in oklab, var(--card), transparent 20%));
+      border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow);
+      margin-bottom:24px; position:relative; overflow:hidden;
+    }
+    /* Effet de fond subtil */
+    .hero:before{
+        content:""; position:absolute; inset:0; pointer-events:none;
+        background: radial-gradient(circle at 50% -20%, rgba(110,231,255,0.1), transparent 70%);
+    }
+
+    .hero h1{font-size:42px; margin:0; line-height:1.1; letter-spacing:-1px; font-weight:800}
+    .hero p{font-size:16px; color:var(--muted); margin:6px auto 0; text-transform:uppercase; letter-spacing:1px; opacity:0.8}
+
+    /* Badge Années Flottant */
+    .hero-badge{
+      display:inline-block; padding:6px 14px; border-radius:99px;
+      background:linear-gradient(90deg, rgba(110,231,255,.2), rgba(167,139,250,.2)); 
+      color:var(--text); border:1px solid rgba(255,255,255,0.2);
+      font-size:14px; font-weight:700; margin-bottom:20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Animation du slogan */
+    @keyframes float {
+        0% { transform: translateY(0px); text-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        50% { transform: translateY(-8px); text-shadow: 0 15px 25px rgba(0,0,0,0.2); }
+        100% { transform: translateY(0px); text-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    }
+    .slogan{
+        font-family: "Georgia", serif; font-style: italic; font-size: 28px; 
+        color: var(--accent); margin: 20px 0 10px;
+        animation: float 4s ease-in-out infinite; /* Ça flotte ici */
+    }
+
+    /* --- LAYOUT --- */
+    .grid{display:grid; gap:20px; grid-template-columns:1.4fr 1fr}
+    @media (max-width:850px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:color-mix(in oklab, var(--card), transparent 5%);
+      border:1px solid var(--line); border-radius:var(--r);
+      box-shadow:var(--shadow); padding:20px;
+    }
+    .cardHead{margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line)}
+    .cardHead h2{margin:0; font-size:18px; display:flex; align-items:center; gap:10px}
+    
+    /* --- SOMMAIRE --- */
+    details{
+      background:color-mix(in oklab, var(--card), transparent 30%);
+      border:1px solid var(--line); border-radius:12px;
+      margin-bottom:10px; overflow:hidden; transition:background .2s;
+    }
+    details:hover{background:color-mix(in oklab, var(--card), transparent 50%)}
+    /* Pas de 'open' par défaut ici */
+    
+    summary{
+      padding:14px; font-weight:600; cursor:pointer; list-style:none;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"›"; font-size:18px; transition:transform .2s; color:var(--muted)}
+    details[open] summary:after{transform:rotate(90deg)}
+    
+    .tocLink{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px; text-decoration:none; font-weight:600;
+      background:color-mix(in oklab, var(--card), transparent 30%);
+      border:1px solid var(--line); border-radius:12px;
+      margin-bottom:10px; transition:background .2s;
+    }
+    .tocLink:hover{background:color-mix(in oklab, var(--card), transparent 50%)}
+    .tocLink span{display:flex; gap:10px; align-items:center}
+    .chev{color:var(--muted); font-size:18px}
+
+    .subList{
+      padding:0 14px 14px; display:grid; gap:6px;
+    }
+    .mini{
+      display:block; padding:8px 12px; border-radius:8px;
+      background:color-mix(in oklab, var(--card), transparent 60%);
+      font-size:14px; color:var(--muted); transition:all .2s;
+      border:1px solid transparent;
+    }
+    .mini:hover{color:var(--text); background:rgba(255,255,255,.05); border-color:var(--line)}
+
+    /* --- ACCES DIRECT --- */
+    .tiles{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .tile{
+      padding:16px; border-radius:16px; border:1px solid var(--line);
+      display:flex; flex-direction:column; gap:4px;
+      transition:transform .2s;
+    }
+    .tile:hover{transform:translateY(-2px)}
+    .tile div{font-weight:700; font-size:15px}
+    .tile small{font-weight:400; color:var(--muted); font-size:12px}
+    
+    .tintA{background:var(--tintA)}
+    .tintB{background:var(--tintB)}
+    .tintC{background:var(--tintC)}
+    .tintD{background:var(--tintD)}
+
+    .dl-link{
+        display:block; margin-top:20px; padding-top:16px; border-top:1px solid var(--line);
+        font-size:13px; color:var(--muted); text-align:center; text-decoration:underline;
+        text-underline-offset: 4px;
+    }
+    .dl-link:hover{color:var(--accent)}
+
+    .credits{
+        margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);
+        text-align: center; font-size: 11px; color: var(--muted);
+        line-height: 1.6; opacity: 0.6;
+    }
+
+    @media (max-width:600px){.tiles{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    
+    <div class="hero">
+      <div class="hero-badge">2026 – 2030</div>
+      <h1>Projet d’établissement</h1>
+      <div class="slogan">« Un lieu, des horizons... »</div>
+      <p>Cité scolaire René Pellet — EREA DV</p>
+    </div>
+
+    <div class="grid">
+      
+      <div class="card">
+        <div class="cardHead">
+          <h2>Sommaire</h2>
+        </div>
+
+        <div class="toc">
+          <details>
+            <summary>Présentation & Contexte</summary>
+            <div class="subList">
+              <a class="mini" href="02-infographie-2025-2026.html">Infographie 2025-2026</a>
+              <a class="mini" href="03-contexte.html">Éléments de contexte</a>
+              <a class="mini" href="04-ecole.html">École élémentaire</a>
+              <a class="mini" href="05-college.html">Collège</a>
+              <a class="mini" href="06-lycee-pro.html">Lycée Professionnel</a>
+            </div>
+          </details>
+
+          <details>
+            <summary>Méthode & Cadrage</summary>
+            <div class="subList">
+              <a class="mini" href="07-methode.html">Méthode retenue</a>
+              <a class="mini" href="08-introduction.html" style="color:var(--text); font-weight:700">Introduction générale</a>
+            </div>
+          </details>
+
+          <details>
+            <summary>Le Projet (2026-2030)</summary>
+            <div class="subList">
+              <a class="mini" href="09-axe1.html">Axe 1 : Parcours</a>
+              <a class="mini" href="10-axe2.html">Axe 2 : Accessibilité</a>
+              <a class="mini" href="11-axe3.html">Axe 3 : Bien-être</a>
+              <a class="mini" href="12-axe4.html">Axe 4 : Identité</a>
+            </div>
+          </details>
+
+          <details>
+            <summary>Évaluation & Mise en œuvre</summary>
+            <div class="subList">
+              <a class="mini" href="13-mise-en-oeuvre-axe1.html">Axe 1 : Parcours</a>
+              <a class="mini" href="14-mise-en-oeuvre-axe2.html">Axe 2 : Accessibilité</a>
+              <a class="mini" href="15-mise-en-oeuvre-axe3.html">Axe 3 : Bien-être</a>
+              <a class="mini" href="16-mise-en-oeuvre-axe4.html">Axe 4 : Identité</a>
+            </div>
+          </details>
+
+          <a class="tocLink" href="17-conclusion.html">
+            <span>Conclusion</span><span class="chev">›</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card" aria-label="Accès direct">
+        <div class="cardHead">
+          <h2>Accès direct</h2>
+        </div>
+
+        <div class="tiles">
+          <a class="tile tintA" href="02-infographie-2025-2026.html">
+            <div>Infographie <small>Chiffres clés</small></div>
+          </a>
+
+          <a class="tile tintB" href="08-introduction.html">
+            <div>Introduction <small>Vision globale</small></div>
+          </a>
+
+          <a class="tile tintC" href="09-axe1.html">
+            <div>Le Projet <small>Axes 1 à 4</small></div>
+          </a>
+
+          <a class="tile tintD" href="17-conclusion.html">
+            <div>Conclusion <small>Clôture</small></div>
+          </a>
+        </div>
+        
+        <a href="projet-2026-2030.pdf" class="dl-link" download>
+          📄 Télécharger le projet complet (PDF)
+        </a>
+        
+        <div class="credits">
+          Par la Communauté scolaire de la Cité Scolaire René Pellet<br>
+          et coordonné par le Comité de Pilotage de l'auto-évaluation<br>
+          Villeurbanne, 15 Décembre 2025
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
