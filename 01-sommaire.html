@@ -3,458 +3,236 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Sommaire du Projet d'établissement 2026-2030 de la Cité scolaire René Pellet.">
   <title>Sommaire — Projet d’établissement 2026-2030</title>
   <meta name="color-scheme" content="light dark">
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#101a2f;
-      --muted:#9fb0d0;
-      --text:#eaf0ff;
-      --line:rgba(255,255,255,.10);
+      --bg:#0b1220; --card:#101a2f; --text:#eaf0ff; --muted:#9fb0d0; --line:rgba(255,255,255,.10);
+      --shadow:0 18px 55px rgba(0,0,0,.35); --r:20px;
       --accent:#6ee7ff;
-      --accent2:#a78bfa;
-      --shadow: 0 18px 55px rgba(0,0,0,.35);
-      --radius:20px;
     }
     @media (prefers-color-scheme: light){
       :root{
-        --bg:#f5f7ff;
-        --card:#ffffff;
-        --muted:#53627a;
-        --text:#0b1220;
-        --line:rgba(0,0,0,.10);
-        --shadow: 0 18px 55px rgba(30,41,59,.14);
+        --bg:#f5f7ff; --card:#fff; --text:#0b1220; --muted:#53627a; --line:rgba(0,0,0,.10);
+        --shadow:0 18px 55px rgba(30,41,59,.14);
+        --accent:#0284c7;
       }
     }
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 800px at 10% 0%, rgba(110,231,255,.16), transparent 60%),
-        radial-gradient(900px 700px at 100% 10%, rgba(167,139,250,.14), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.45;
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;
+      background:radial-gradient(1200px 800px at 50% 0%, rgba(110,231,255,.12), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.5;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 16px 56px}
+    .wrap{max-width:800px; margin:0 auto; padding:20px 16px 60px}
     
-    /* --- HEADER / TOPBAR --- */
+    /* Header simplifié */
     .topbar{
       display:flex; gap:12px; align-items:center; justify-content:space-between;
-      padding:10px 14px;
-      background: color-mix(in oklab, var(--card), transparent 10%);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      position: sticky; top:12px; z-index:100;
-      backdrop-filter: blur(12px);
+      padding:14px; border:1px solid var(--line); border-radius:var(--r);
+      background:color-mix(in oklab, var(--card), transparent 10%);
+      box-shadow:var(--shadow); margin-bottom: 20px;
+      backdrop-filter: blur(10px);
     }
-    
-    /* Logo cliquable */
-    a.brand{
-      display:flex; gap:12px; align-items:center;
-      transition: opacity 0.2s;
-    }
-    a.brand:hover{ opacity: 0.7; }
-
-    .badge{
-      width:40px; height:40px; border-radius:12px;
-      display:grid; place-items:center;
-      background: linear-gradient(135deg, rgba(110,231,255,.28), rgba(167,139,250,.22));
-      border:1px solid var(--line);
-      font-size: 20px;
-    }
-    .brand h1{font-size:16px; margin:0; line-height: 1.2;}
-    .brand p{margin:0; font-size:12px; color:var(--muted)}
-    
-    .nav{display:flex; gap:12px; flex-wrap:wrap; align-items: center; justify-content:flex-end}
-    
-    /* Bouton Standard (Style unifié avec le reste du site) */
+    .brand{display:flex; gap:12px; align-items:center; font-weight: 700;}
     .pill{
-      padding:10px 14px; /* Padding standard remis comme avant */
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card), transparent 12%);
-      font-size:13px; font-weight: normal; /* Font-weight normal pour uniformité */
-      transition: transform 0.1s;
-      display: inline-flex; align-items: center; gap: 6px;
+      padding:8px 16px; border-radius:99px; border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 12%);
+      font-size:13px; transition: 0.2s;
     }
-    .pill:hover{ transform: translateY(-1px); background: color-mix(in oklab, var(--card), transparent 5%); }
+    .pill:hover{background:var(--accent); color: white; border-color: var(--accent);}
 
-    /* --- RECHERCHE DANS HEADER --- */
-    .search-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
+    /* Barre de recherche */
+    .search-box{
+      margin-bottom: 24px; position: relative;
     }
-    .search-mini {
-      appearance: none;
-      background: color-mix(in oklab, var(--card), transparent 50%);
-      border: 1px solid var(--line);
-      color: var(--text);
-      border-radius: 99px;
-      padding: 8px 12px 8px 34px;
-      font-size: 13px;
-      width: 160px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      outline: none;
-    }
-    .search-mini:focus {
-      width: 240px;
-      background: var(--card);
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 85%);
-    }
-    .search-icon {
-      position: absolute;
-      left: 10px;
-      color: var(--muted);
-      pointer-events: none;
-      width: 16px; height: 16px;
-    }
-
-    /* Adaptation Mobile */
-    @media (max-width: 768px){
-      .topbar{flex-wrap: wrap; gap: 10px;}
-      .brand {width: 100%;}
-      .nav{width: 100%; justify-content: space-between;}
-      .search-wrapper { order: 2; width: 100%; margin-top: 8px;}
-      .search-mini { width: 100%; }
-      .search-mini:focus { width: 100%; }
-      .pill { order: 1; margin-left: auto; }
-    }
-
-    /* --- CONTENU --- */
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:16px;
-      margin-top:24px;
-    }
-    details{
-      border:1px solid var(--line);
-      border-radius:18px;
-      background: color-mix(in oklab, var(--card), transparent 8%);
+    .search-input{
+      width: 100%; padding: 16px 20px 16px 50px;
+      border-radius: var(--r); border: 1px solid var(--line);
+      background: color-mix(in oklab, var(--card), transparent 5%);
+      color: var(--text); font-size: 16px; outline: none;
       box-shadow: var(--shadow);
-      overflow:hidden;
+      transition: border-color 0.2s;
     }
-    summary{
-      cursor:pointer;
-      list-style:none;
-      padding:14px 16px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      font-weight:700;
-      font-size: 17px;
+    .search-input:focus{ border-color: var(--accent); }
+    .search-icon{
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px; color: var(--muted); pointer-events: none;
     }
-    summary::-webkit-details-marker{display:none}
-    
-    .chev{
-      width:32px;height:32px;flex:0 0 32px;
-      display:grid;place-items:center;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.1);
-      color:var(--text);
-      font-size:14px;
-      transition:transform .2s ease;
-    }
-    @media (prefers-color-scheme: light){
-       .chev { background: rgba(0,0,0,0.05); }
-    }
-    details[open] .chev{transform:rotate(180deg)}
 
-    .body{padding: 0 12px 12px}
+    /* Liste */
+    .section-title{
+        font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+        color: var(--muted); margin: 24px 0 8px 8px; font-weight: 800;
+    }
+    
     .item{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 14px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background: color-mix(in oklab, var(--card), transparent 30%);
-      margin-top:8px;
-      transition: background 0.1s, transform 0.1s;
+      display:block; text-decoration:none;
+      padding:16px; margin-bottom: 8px;
+      border:1px solid var(--line); border-radius:16px;
+      background:color-mix(in oklab, var(--card), transparent 20%);
+      transition:transform .2s, background .2s;
     }
-    .item .left{display:flex; flex-direction:column; gap:2px}
-    .item .t{font-weight:600; font-size: 15px;}
-    .item .s{font-size:13px; color:var(--muted)}
-    
     .item:hover{
-        transform: translateY(-1px);
-        background: color-mix(in oklab, var(--card), transparent 5%);
+      transform:translateY(-2px);
+      background:color-mix(in oklab, var(--card), transparent 5%);
+      border-color: var(--accent);
     }
-    .item.active{
-      border-color: color-mix(in oklab, var(--accent), var(--text) 20%);
-      box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent), transparent 60%);
-      background: color-mix(in oklab, var(--accent), transparent 90%);
-    }
-    .item.active .t{color:var(--accent)}
-    
-    @media (prefers-color-scheme: light){
-        .item.active .t{color:#007acc}
-    }
+    .item .t{font-weight:700; font-size:16px; color: var(--text); margin-bottom: 4px;}
+    .item .s{font-size:14px; color:var(--muted);}
+
+    /* Style si caché par la recherche */
+    .hidden { display: none; }
 
     .foot{
-      margin-top:30px;
-      display:flex; justify-content:center;
-      color:var(--muted); font-size:13px;
-      text-align: center;
-    }
-    
-    @media print{
-      .topbar{position:static; box-shadow:none; border:none}
-      body{background:#fff; color:#000}
-      details {box-shadow:none; border: 1px solid #ccc; page-break-inside: avoid;}
-      .search-wrapper, .pill {display:none}
+      margin-top:40px; text-align:center; font-size:12px; color:var(--muted);
     }
   </style>
 </head>
-
 <body>
+
   <div class="wrap">
     
     <header class="topbar">
-      <a href="index.html" class="brand" title="Retour à l'accueil">
-        <div class="badge" aria-hidden="true">🧭</div>
-        <div>
-          <h1>Sommaire</h1>
-          <p>Projet d’établissement 2026-2030</p>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Navigation">
-        <div class="search-wrapper">
-            <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <input id="q" class="search-mini" type="search" placeholder="Rechercher..." aria-label="Rechercher dans le sommaire">
-        </div>
-
-        <a class="pill" id="continue" href="01-sommaire.html">
-          <span>Continuer</span>
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-        </a>
-      </nav>
+      <div class="brand">Table des matières</div>
+      <a class="pill" href="index.html">Retour Accueil</a>
     </header>
 
-    <section class="grid" id="list">
+    <div class="search-box">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="q" class="search-input" placeholder="Rechercher une section, un mot clé..." autofocus>
+    </div>
 
-      <details>
-        <summary>Avant-propos et cadrage <span class="chev" aria-hidden="true">▾</span></summary>
-        <div class="body">
-          <a class="item" data-text="infographie 2025 2026 effectifs personnels formations accompagnements indicateurs" href="02-infographie-2025-2026.html">
-            <div class="left">
-              <div class="t">Infographie 2025-2026</div>
-              <div class="s">Structures, effectifs, personnels, formations, accompagnements, budget</div>
-            </div>
-          </a>
+    <div id="list">
+      
+      <div class="group">
+        <div class="section-title">Présentation & Contexte</div>
+        
+        <a class="item" href="02-infographie-2025-2026.html" data-keywords="chiffres clés effectifs budget personnels">
+          <div class="t">Infographie 2025-2026</div>
+          <div class="s">Vue d'ensemble des structures et moyens</div>
+        </a>
+        <a class="item" href="03-contexte.html" data-keywords="histoire situation géographie public">
+          <div class="t">Éléments de contexte</div>
+          <div class="s">Histoire, localisation et spécificités de l'EREA</div>
+        </a>
+        <a class="item" href="04-ecole.html" data-keywords="primaire élémentaire">
+          <div class="t">École élémentaire</div>
+          <div class="s">Structure pédagogique</div>
+        </a>
+        <a class="item" href="05-college.html" data-keywords="cycle 3 cycle 4">
+          <div class="t">Collège</div>
+          <div class="s">Structure pédagogique</div>
+        </a>
+        <a class="item" href="06-lycee-pro.html" data-keywords="lp cap bac pro formation professionnelle">
+          <div class="t">Lycée Professionnel</div>
+          <div class="s">Structure pédagogique et formations</div>
+        </a>
+      </div>
 
-          <a class="item" data-text="elements contexte cite scolaire rene pellet erea dv villeurbanne" href="03-contexte.html">
-            <div class="left">
-              <div class="t">Éléments de contexte</div>
-              <div class="s">Cité Scolaire René Pellet EREA DV de Villeurbanne</div>
-            </div>
-          </a>
+      <div class="group">
+        <div class="section-title">Cadrage</div>
+        
+        <a class="item" href="07-methode.html" data-keywords="démarche méthodologie comité pilotage">
+          <div class="t">Méthode retenue</div>
+          <div class="s">Construction du projet d'établissement</div>
+        </a>
+        <a class="item" href="08-introduction.html" data-keywords="général ambition valeurs">
+          <div class="t">Introduction générale</div>
+          <div class="s">Vision globale et axes structurants</div>
+        </a>
+      </div>
 
-          <a class="item" data-text="indicateurs specifiques csrp pial" href="04-indicateurs-csrp.html">
-            <div class="left">
-              <div class="t">Quelques indicateurs spécifiques à la CSRP</div>
-              <div class="s">Données clés et repères</div>
-            </div>
-          </a>
+      <div class="group">
+        <div class="section-title">Première partie : Le Projet</div>
+        
+        <a class="item" href="09-axe1.html" data-keywords="parcours réussite orientation">
+          <div class="t">Axe 1 : Parcours personnalisé</div>
+          <div class="s">Construire un projet de réussite pour chaque élève</div>
+        </a>
+        <a class="item" href="10-axe2.html" data-keywords="accessibilité fondamentaux pédagogie">
+          <div class="t">Axe 2 : Accessibilité & Fondamentaux</div>
+          <div class="s">Garantir l'accès aux apprentissages pour tous</div>
+        </a>
+        <a class="item" href="11-axe3.html" data-keywords="bien-être climat scolaire vie">
+          <div class="t">Axe 3 : Bien-être</div>
+          <div class="s">S'engager pour le bien-être élèves et personnels</div>
+        </a>
+        <a class="item" href="12-axe4.html" data-keywords="identité ressource inclusion partenariat">
+          <div class="t">Axe 4 : Identité & Ressource</div>
+          <div class="s">Affirmer l'identité EREA et devenir établissement ressource</div>
+        </a>
+      </div>
 
-          <a class="item" data-text="pole dv csrp caracteristiques ecole college materiel pedagogique adapte mpa" href="05-pole-dv.html">
-            <div class="left">
-              <div class="t">Le Pôle DV de la CSRP</div>
-              <div class="s">Caractéristiques du public + besoins en matériel pédagogique adapté</div>
-            </div>
-          </a>
+      <div class="group">
+        <div class="section-title">Deuxième partie : Évaluation</div>
+        
+        <a class="item" href="13-mise-en-oeuvre-axe1.html" data-keywords="indicateurs évaluation axe 1">
+          <div class="t">Évaluation : Axe 1</div>
+          <div class="s">Indicateurs de suivi du parcours personnalisé</div>
+        </a>
+        <a class="item" href="14-mise-en-oeuvre-axe2.html" data-keywords="indicateurs évaluation axe 2">
+          <div class="t">Évaluation : Axe 2</div>
+          <div class="s">Indicateurs de suivi de l'accessibilité</div>
+        </a>
+        <a class="item" href="15-mise-en-oeuvre-axe3.html" data-keywords="indicateurs évaluation axe 3">
+          <div class="t">Évaluation : Axe 3</div>
+          <div class="s">Indicateurs de suivi du bien-être</div>
+        </a>
+        <a class="item" href="16-mise-en-oeuvre-axe4.html" data-keywords="indicateurs évaluation axe 4">
+          <div class="t">Évaluation : Axe 4</div>
+          <div class="s">Indicateurs de suivi de l'identité ressource</div>
+        </a>
+      </div>
 
-            <a class="item" data-text="lycee professionnel evolution population scolaire caracteristiques visites medicales pps apres cap" href="06-lycee-pro.html">
-            <div class="left">
-              <div class="t">Le Lycée professionnel</div>
-              <div class="s">Évolution de la population, visites médicales, PPS, focus après CAP</div>
-            </div>
-          </a>
+      <div class="group">
+        <div class="section-title">Clôture</div>
+        <a class="item" href="17-conclusion.html" data-keywords="fin signature comité">
+          <div class="t">Conclusion</div>
+          <div class="s">Le mot de la fin</div>
+        </a>
+      </div>
 
-        <a class="item" data-text="description methode retenue projet etablissement autoevaluation" href="07-methode.html">
-            <div class="left">
-              <div class="t">Méthode retenue</div>
-              <div class="s">Description de la démarche</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="introduction generale projet etablissement" href="08-introduction.html">
-            <div class="left">
-              <div class="t">Introduction générale</div>
-              <div class="s">Cadre et intention</div>
-            </div>
-          </a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Première partie : Projet d’établissement 2026-2030 <span class="chev" aria-hidden="true">▾</span></summary>
-        <div class="body">
-          <a class="item" data-text="premiere partie projet etablissement 2026 2030" href="09-axe1.html">
-            <div class="left">
-              <div class="t">Vue d’ensemble de la première partie</div>
-              <div class="s">Présentation et structuration</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 1 construire parcours personnalise projet reussite" href="09-axe1.html">
-            <div class="left">
-              <div class="t">Axe 1</div>
-              <div class="s">Construire, pour chaque élève, un parcours personnalisé et un projet de réussite</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 2 garantir accessibilite apprentissages maitrise savoirs fondamentaux" href="10-axe2.html">
-            <div class="left">
-              <div class="t">Axe 2</div>
-              <div class="s">Garantir l’accessibilité des apprentissages et la maîtrise des savoirs fondamentaux pour tous</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 3 s engager bien etre tous eleves personnels" href="11-axe3.html">
-            <div class="left">
-              <div class="t">Axe 3</div>
-              <div class="s">S’engager pour le bien-être de tous, élèves et personnels</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 4 affirmer identite singuliere erea etablissement ressource ecole inclusive" href="12-axe4.html">
-            <div class="left">
-              <div class="t">Axe 4</div>
-              <div class="s">Affirmer l’identité singulière de l’EREA et devenir un établissement ressource en matière d’école inclusive</div>
-            </div>
-          </a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Deuxième partie : Mise en œuvre de l’évaluation <span class="chev" aria-hidden="true">▾</span></summary>
-        <div class="body">
-          <a class="item" data-text="deuxieme partie mise en oeuvre evaluation projet etablissement" href="13-mise-en-oeuvre-axe1.html">
-            <div class="left">
-              <div class="t">Vue d’ensemble de la deuxième partie</div>
-              <div class="s">Organisation et suivi</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 1 evaluation construire parcours personnalise projet reussite" href="13-mise-en-oeuvre-axe1.html">
-            <div class="left">
-              <div class="t">Axe 1</div>
-              <div class="s">Construire, pour chaque élève, un parcours personnalisé et un projet de réussite</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 2 evaluation accessibilite apprentissages fondamentaux" href="14-mise-en-oeuvre-axe2.html">
-            <div class="left">
-              <div class="t">Axe 2</div>
-              <div class="s">Garantir l’accessibilité des apprentissages et la maîtrise des fondamentaux</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 3 evaluation bien etre tous" href="15-mise-en-oeuvre-axe3.html">
-            <div class="left">
-              <div class="t">Axe 3</div>
-              <div class="s">S’engager pour le bien-être de tous</div>
-            </div>
-          </a>
-
-          <a class="item" data-text="axe 4 evaluation identite erea etablissement ressource" href="16-mise-en-oeuvre-axe4.html">
-            <div class="left">
-              <div class="t">Axe 4</div>
-              <div class="s">Affirmer l’identité singulière de l’EREA et devenir établissement ressource</div>
-            </div>
-          </a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Conclusion <span class="chev" aria-hidden="true">▾</span></summary>
-        <div class="body">
-          <a class="item" data-text="conclusion" href="17-conclusion.html">
-            <div class="left">
-              <div class="t">Conclusion</div>
-              <div class="s">Clôture du document</div>
-            </div>
-          </a>
-        </div>
-      </details>
-
-    </section>
+    </div>
 
     <footer class="foot">
-      <div class="footText">Projet d’établissement 2026-2030 — Cité scolaire René Pellet</div>
+      Projet d’établissement 2026-2030
     </footer>
   </div>
 
   <script>
-    // 1. Sauvegarder la page courante
-    ;(function(){
-      try{
-        localStorage.setItem('pe_last_file', (location.pathname.split('/').pop() || '01-sommaire.html'))
-      }catch(e){}
-    })()
+    // Script de recherche instantanée
+    const input = document.getElementById('q');
+    const items = document.querySelectorAll('.item');
+    const groups = document.querySelectorAll('.group');
 
-    // 2. Gestion de la recherche
-    ;(function(){
-      var q = document.getElementById('q')
-      if(!q) return;
-
-      var items = Array.prototype.slice.call(document.querySelectorAll('.item'))
-      var details = Array.prototype.slice.call(document.querySelectorAll('details'))
-      
-      function norm(s){
-        return (s||'')
-          .toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-      }
-
-      function apply(){
-        var v = norm(q.value).trim()
-        var any = false
+    function filter(){
+        const term = input.value.toLowerCase();
         
-        items.forEach(function(it){
-          var txt = norm(it.getAttribute('data-text') || it.textContent)
-          var ok = !v || txt.indexOf(v) >= 0
-          it.style.display = ok ? '' : 'none'
-          if(ok) any = true
-        })
+        items.forEach(item => {
+            const text = (item.innerText + " " + item.dataset.keywords).toLowerCase();
+            if(text.includes(term)){
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
 
-        if(v){
-          details.forEach(function(d){ d.open = true })
-        }
-      }
+        // Masquer les titres de section vides
+        groups.forEach(group => {
+            const visibleItems = group.querySelectorAll('.item:not(.hidden)');
+            const title = group.querySelector('.section-title');
+            if(visibleItems.length === 0){
+                title.classList.add('hidden');
+            } else {
+                title.classList.remove('hidden');
+            }
+        });
+    }
 
-      q.addEventListener('input', apply)
-      apply()
-    })()
-
-    // 3. Bouton "Continuer" intelligent
-    ;(function setActiveFromLast(){
-      var last = ''
-      try{ last = localStorage.getItem('pe_last_file') || '' }catch(e){}
-      
-      var cont = document.getElementById('continue')
-      if(cont){
-        cont.href = last && last !== '01-sommaire.html' ? last : '01-sommaire.html'
-      }
-
-      if(!last) return
-      
-      try{
-        Array.prototype.slice.call(document.querySelectorAll('.item')).forEach(function(a){
-          a.classList.remove('active')
-        })
-        var sel = '.item[href="' + last + '"]'
-        var a = document.querySelector(sel)
-        if(a) a.classList.add('active')
-      }catch(e){}
-    })()
+    input.addEventListener('input', filter);
   </script>
+
 </body>
 </html>
