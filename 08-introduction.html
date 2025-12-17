@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang=fr>
+<html lang="fr">
 <head>
-  <meta charset=utf-8>
-  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Introduction générale — CSRP</title>
-  <meta name=color-scheme content="light dark">
+  <meta name="color-scheme" content="light dark">
   <style>
     :root{
       --bg:#0b1220;
@@ -135,13 +135,9 @@
       border:1px solid var(--line);
       font-size:13px; font-weight:600;
       background: color-mix(in oklab, var(--card), transparent 10%);
-      
-      /* Animation activée */
       animation: float 3s ease-in-out infinite;
       transition: all 0.3s ease;
     }
-
-    /* Décalage pour effet naturel */
     .chip:nth-child(1) { animation-delay: 0s; }
     .chip:nth-child(2) { animation-delay: 0.3s; }
     .chip:nth-child(3) { animation-delay: 0.6s; }
@@ -150,7 +146,6 @@
     .chip:nth-child(6) { animation-delay: 1.5s; }
     .chip:nth-child(7) { animation-delay: 1.8s; }
 
-    /* Interaction au survol (Pause + Zoom) */
     .chip:hover{
         animation-play-state: paused;
         transform: scale(1.05) translateY(-2px);
@@ -184,12 +179,31 @@
         flex-shrink: 0; margin-top: -2px;
     }
 
+    /* Style spécifique pour la carte mentale */
+    .mindmap-container {
+        margin-top: 14px;
+        text-align: center;
+        background: color-mix(in oklab, var(--card), transparent 2%); /* Fond légèrement plus opaque */
+    }
+    .mindmap-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .mindmap-img:hover {
+        transform: scale(1.01);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
     details{
       border:1px solid var(--line);
       border-radius:18px;
       background: color-mix(in oklab, var(--card), transparent 10%);
       overflow:hidden;
-      margin-top:0;
+      margin-top:14px;
     }
     summary{
       cursor:pointer;
@@ -249,8 +263,8 @@
       </a>
 
       <nav class=nav aria-label=Navigation>
-  <a class=pill href=index.html>Accueil</a>   <a class=pill href=01-sommaire.html>Sommaire</a>
-</nav>
+        <a class=pill href=index.html>Accueil</a>   <a class=pill href=01-sommaire.html>Sommaire</a>
+      </nav>
     </header>
 
     <section class=hero>
@@ -298,7 +312,12 @@
       </div>
     </section>
 
-    <section style="margin-top:14px;">
+    <section class="card mindmap-container">
+        <h3 style="margin-bottom:16px;">Synthèse visuelle du projet</h3>
+        <img src="carte-mentale.png" alt="Carte mentale du projet 2026-2030" class="mindmap-img">
+    </section>
+
+    <section>
         <details>
             <summary>
                 Lire le texte intégral de l'introduction
